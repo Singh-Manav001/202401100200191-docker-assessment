@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FestPass Registration</title>
+</head>
+<body>
+    <h1>FestPass Registration</h1>
+    <p>Registration service is running.</p>
+
+    <button onclick="checkHealth()">Check Backend Health</button>
+    <pre id="result">Click the button to check backend.</pre>
+
+    <script>
+        async function checkHealth() {
+            try {
+                const response = await fetch("/api/health");
+                const data = await response.json();
+                document.getElementById("result").textContent =
+                    JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById("result").textContent = error.message;
+            }
+        }
+    </script>
+</body>
+</html>
